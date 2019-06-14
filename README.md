@@ -22,7 +22,7 @@ It's required to have the `code` installed in your system, follow this instructi
 **Installing from Build**
 
 ```bash
-git clone https://bitbucket.org/jspare-wallet-platform/vscode-gekko-ext.git
+git clone https://github.com/jspare-projects/vscode-gekko-ext.git
 npm i -g vsce
 npm run compile
 npm run package
