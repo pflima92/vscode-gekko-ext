@@ -2,9 +2,14 @@
 	"name": "vscode-gekko-ext",
 	"displayName": "vscode-gekko-ext",
 	"description": "Gekko Strategy Builder for Vscode",
-	"publisher": "jspare",
+	"publisher": "jspare-org",
+	"author": {
+		"email": "pflima92@gmail.com",
+		"name": "Paulo Lima",
+		"url": "https://github.com/pflima92"
+	},
 	"version": "0.0.1",
-	"repository": "https://bitbucket.org/jspare-wallet-platform/vscode-gekko-ext",
+	"repository": "https://github.com/jspare-projects/vscode-gekko-ext",
 	"engines": {
 		"vscode": "^1.31.0",
 		"platform-gekko": "^1.0.0"
@@ -12,6 +17,16 @@
 	"categories": [
 		"Other"
 	],
+	"keywords": [
+		"gekko",
+		"jspre"
+	],
+	"galleryBanner": {
+		"color": "#383734"
+	},
+	"preview": false,
+	"homepage": "https://github.com/jspare-projects/vscode-gekko-ext",
+	"icon": "images/logo.png",
 	"activationEvents": [
 		"onCommand:extension.gekkoServerInfo",
 		"onCommand:extension.backtestStrategy"
@@ -20,7 +35,7 @@
 	"contributes": {
 		"configuration": [
 			{
-				"title": "Jspare Platform Gekko",
+				"title": "Jspare Cloud Gekko",
 				"properties": {
 					"gekko.address": {
 						"type": "string",
