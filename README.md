@@ -1,6 +1,8 @@
 # vscode-gekko-ext
 
-Gekko Strategy Builder for Vscode
+Jspare Cloud Gekko Strategy Builder for Vscode
+
+> Extension made exclusively for [Jspare Cloud Gekko](https://github.com/jspare-projects/gekko), isn't compatible with `askmike/gekko`.
 
 ## Running the Extension
 

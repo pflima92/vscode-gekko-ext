@@ -24,7 +24,7 @@
 				"properties": {
 					"gekko.address": {
 						"type": "string",
-						"default": "http://api.platform.jspare.org/gekko",
+						"default": "http://localhost:3000",
 						"description": "Gekko address to connect this plugin."
 					},
 					"gekko.backtest": {
