@@ -5,7 +5,7 @@ const GetInfo = () => {
 
     const gekkoAddress = vscode.workspace.getConfiguration().get('gekko.address');
     return new Promise<any>(function (resolve, reject) {
-        unirest.get(`${gekkoAddress}/v1/info`)
+        unirest.get(`${gekkoAddress}/api/info`)
             .headers({ 'Accept': 'application/json', 'Content-Type': 'application/json' })
             .send()
             .end(res => {
@@ -19,7 +19,7 @@ const BacktestSandbox = (data: any) => {
 
     const gekkoAddress = vscode.workspace.getConfiguration().get('gekko.address');
     return new Promise<string[]>(function (resolve, reject) {
-        unirest.post(`${gekkoAddress}/v1/sandboxBacktest`)
+        unirest.post(`${gekkoAddress}/api/sandboxBacktest`)
             .headers({ 'cache-control': 'no-cache', 'Content-Type': 'application/json' })
             .send(data)
             .end(res => {

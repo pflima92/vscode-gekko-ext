@@ -7,7 +7,7 @@
 	"repository": "https://bitbucket.org/jspare-wallet-platform/vscode-gekko-ext",
 	"engines": {
 		"vscode": "^1.31.0",
-		"platform-gekko": "^0.0.1"
+		"platform-gekko": "^1.0.0"
 	},
 	"categories": [
 		"Other"
