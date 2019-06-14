@@ -1,0 +1,137 @@
+{
+	"name": "vscode-gekko-ext",
+	"displayName": "vscode-gekko-ext",
+	"description": "Gekko Strategy Builder for Vscode",
+	"publisher": "jspare",
+	"version": "0.0.1",
+	"repository": "https://bitbucket.org/jspare-wallet-platform/vscode-gekko-ext",
+	"engines": {
+		"vscode": "^1.31.0",
+		"platform-gekko": "^0.0.1"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:extension.gekkoServerInfo",
+		"onCommand:extension.backtestStrategy"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"configuration": [
+			{
+				"title": "Jspare Platform Gekko",
+				"properties": {
+					"gekko.address": {
+						"type": "string",
+						"default": "http://api.platform.jspare.org/gekko",
+						"description": "Gekko address to connect this plugin."
+					},
+					"gekko.backtest": {
+						"type": "object",
+						"default": {
+							"paperTrader": {
+								"feeMaker": 0.25,
+								"feeTaker": 0.25,
+								"feeUsing": "maker",
+								"slippage": 0.05,
+								"simulationBalance": {
+									"asset": 1,
+									"currency": 100
+								},
+								"reportRoundtrips": true,
+								"enabled": true
+							},
+							"tradingAdvisor": {
+								"enabled": true,
+								"candleSize": 60,
+								"historySize": 10
+							},
+							"watch": {
+								"exchange": "binance",
+								"currency": "BTC",
+								"asset": "BNB"
+							},
+							"backtest": {
+								"daterange": {
+									"from": "2019-02-04T19:58:00Z",
+									"to": "2019-03-06T19:57:00Z"
+								}
+							},
+							"backtestResultExporter": {
+								"enabled": true,
+								"writeToDisk": false,
+								"data": {
+									"stratUpdates": true,
+									"roundtrips": true,
+									"stratCandles": true,
+									"stratCandleProps": [
+										"open",
+										"close",
+										"high",
+										"low",
+										"vwp",
+										"volume"
+									],
+									"trades": true
+								}
+							},
+							"performanceAnalyzer": {
+								"riskFreeReturn": 2,
+								"enabled": true
+							},
+							"valid": true
+						},
+						"description": "Default object data to run a backtest."
+					},
+					"gekko.validateServerVersion": {
+						"type": "boolean",
+						"default": true,
+						"description": "Validate Extension Version with Server Version (Recommeded)."
+					}
+				}
+			}
+		],
+		"commands": [
+			{
+				"command": "extension.gekkoServerInfo",
+				"title": "Platform Gekko: Server Version Info"
+			},
+			{
+				"command": "extension.backtestStrategy",
+				"title": "Platform Gekko: Backtest Active Editor Strategy"
+			}
+		],
+		"snippets": [
+			{
+				"language": "javascript",
+				"path": "./snippets.json"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"package": "vsce package -o ./dist/vscode-gekko-ext.vsix",
+		"release": "standard-version"
+	},
+	"dependencies": {
+		"humanize-duration": "^3.18.0",
+		"lodash": "^4.17.11",
+		"moment": "^2.24.0",
+		"toml": "^3.0.0",
+		"unirest": "^0.6.0"
+	},
+	"devDependencies": {
+		"@types/node": "^10.5.2",
+		"standard-version": "^4.4.0",
+		"tslint": "^5.11.0",
+		"typescript": "^2.9.2",
+		"vscode": "^1.1.30"
+	},
+	"standard-version": {
+		"message": "chore(release): %s [ci skip]"
+	}
+}
