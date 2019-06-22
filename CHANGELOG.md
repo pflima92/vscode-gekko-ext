@@ -15,9 +15,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * Create a CSV with all performance reports and add a new line for each new backtest executed using this plugin.
 * Intelissence based on Gekko core. Use the vscode api to help to indicate the essentials functions provided by the gekko since its not exposed by one library.
 
-## [0.0.1] - Unreleased
+## [0.0.2]
 
-* Added a `command` to Stage & Unstage a Strategy on a Gekko Instance.
+* Fixed "command not found error".
+
+## [0.0.1]
+
 * Added a `command` to submit a Backtest to the current active Strategy on Editor.
 * Added Paper Trader to Backtest.
 * Added General Configuration for Backtest for each Strategy.
