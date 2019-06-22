@@ -36,6 +36,14 @@ code --install-extension ./vscode-gekko-ext.vsix
 code --uninstall-extension jspare-org.vscode-gekko-ext
 ```
 
+**Publishing**
+
+For further reference access the [API documentation](https://code.visualstudio.com/api/working-with-extensions/publishing-extension).
+
+```bash
+vsce publish
+```
+
 ## Usage
 
 Structure expected:
