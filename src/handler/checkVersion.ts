@@ -3,7 +3,7 @@ import * as semver from 'semver';
 
 import { GetInfo } from "../client/gekko.client"
 
-const extPackage = vscode.extensions.getExtension('jspare.vscode-gekko-ext').packageJSON;
+const extPackage = vscode.extensions.getExtension('jspare-org.vscode-gekko-ext').packageJSON;
 
 export default async () => {
     let res = await GetInfo();

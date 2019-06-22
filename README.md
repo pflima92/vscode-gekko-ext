@@ -26,15 +26,14 @@ It's required to have the `code` installed in your system, follow this instructi
 ```bash
 git clone https://github.com/jspare-projects/vscode-gekko-ext.git
 npm i -g vsce
-npm run compile
 npm run package
-code --install-extension ./dist/vscode-gekko-ext.vsix
+code --install-extension ./vscode-gekko-ext.vsix
 ```
 
 **Uninstallling**
 
 ```bash
-code --uninstall-extension jspare.vscode-gekko-ext
+code --uninstall-extension jspare-org.vscode-gekko-ext
 ```
 
 ## Usage

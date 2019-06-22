@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 
 import { GetInfo } from "../client/gekko.client"
 
-const extVersion = vscode.extensions.getExtension('jspare.vscode-gekko-ext').packageJSON.version;
+const extVersion = vscode.extensions.getExtension('jspare-org.vscode-gekko-ext').packageJSON.version;
 
 const message = res => `Client Version: ${extVersion} - Platform Gekko Version: ${res.version}`;
 
