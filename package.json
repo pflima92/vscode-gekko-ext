@@ -110,11 +110,11 @@
 		"commands": [
 			{
 				"command": "extension.gekkoServerInfo",
-				"title": "Platform Gekko: Server Version Info"
+				"title": "Gekko: Server Version Info"
 			},
 			{
 				"command": "extension.backtestStrategy",
-				"title": "Platform Gekko: Backtest Active Editor Strategy"
+				"title": "Gekko: Backtest Active Editor Strategy"
 			}
 		],
 		"snippets": [
@@ -136,6 +136,7 @@
 		"humanize-duration": "^3.18.0",
 		"lodash": "^4.17.11",
 		"moment": "^2.24.0",
+		"semver": "^6.1.1",
 		"toml": "^3.0.0",
 		"unirest": "^0.6.0"
 	},
