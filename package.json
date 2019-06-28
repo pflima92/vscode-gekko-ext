@@ -8,7 +8,7 @@
 		"name": "Paulo Lima",
 		"url": "https://github.com/pflima92"
 	},
-	"version": "0.0.3",
+	"version": "0.1.0",
 	"repository": "https://github.com/jspare-projects/vscode-gekko-ext",
 	"engines": {
 		"vscode": "^1.31.0",
@@ -19,10 +19,11 @@
 	],
 	"keywords": [
 		"gekko",
-		"jspre"
+		"jspare",
+		"gekko-cloud"
 	],
 	"galleryBanner": {
-		"color": "#333333"
+		"color": "#fff"
 	},
 	"preview": false,
 	"homepage": "https://github.com/jspare-projects/vscode-gekko-ext",
@@ -102,7 +103,7 @@
 					"gekko.validateServerVersion": {
 						"type": "boolean",
 						"default": true,
-						"description": "Validate Extension Version with Server Version (Recommeded)."
+						"description": "Validate Extension Version with Server Version (Recommended)."
 					}
 				}
 			}

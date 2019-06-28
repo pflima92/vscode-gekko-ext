@@ -111,13 +111,11 @@ export default (res: any) => {
       <tr>
          <td style="width: 119px;"><strong>End price:</strong></td>
          <td style="width: 119px;">${res.performanceReport.endPrice}</td>
-         <td style="width: 119px;"></td>
-         <td style="width: 119px;"><strong>Simulated Profit:</strong></td>
-         <td style="width: 120px;">${color(res.performanceReport.profit)}</td>
+         <td style="width: 119px;"></td>         
       </tr>
       <tr>
          <td style="width: 119px;"><strong>Market:</strong></td>
-         <td style="width: 119px;">${num(res.performanceReport.market)}</td>
+         <td style="width: 119px;">${color(res.performanceReport.market)}</td>
          <td style="width: 119px;"></td>
          <td style="width: 119px;"><strong>Simulated Profit (percent):</strong></td>
          <td style="width: 120px;">${color(profitPercent(res.performanceReport), '%')}</td>

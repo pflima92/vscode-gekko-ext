@@ -1,4 +1,5 @@
 
+import * as _ from 'lodash'
 import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
@@ -32,14 +33,24 @@ export default async () => {
     // Define name and configuration to be used
     let name = path.basename(document.fileName, '.js');
     let rawStrategy = document.getText();
-    let backtest: any = vscode.workspace.getConfiguration().get('gekko.backtest');
-    backtest.tradingAdvisor.method = `${name}`;
-    let settings = {};
+    let baseBacktest: any = vscode.workspace.getConfiguration().get('gekko.backtest');
+    baseBacktest.tradingAdvisor.method = `${name}`;
 
     // Set values based on Active Strategy
     let dirname = path.dirname(document.fileName);
 
+    // Check and Load a Custom Backtest for this strategy
+    let strategyBacktest: any = {};
+    let customBacktestFileName = `${dirname}/backtest.json`;
+    if (fs.existsSync(customBacktestFileName)) {
+        strategyBacktest = JSON.parse(fs.readFileSync(customBacktestFileName).toString('utf8'));
+    }
+
+    let backtest: any = {};
+    _.merge(backtest, baseBacktest, strategyBacktest);
+
     // Set Params
+    let settings = {};
     let paramsFileName = `${dirname}/${name}.toml`
     if (fs.existsSync(paramsFileName)) {
 
@@ -51,27 +62,6 @@ export default async () => {
         // A toml file is required, as utility create a new file to encourage a new file creation.
         fs.writeFileSync(paramsFileName, '[general]\nfoo = bar');
         vscode.window.showWarningMessage(`No configurations for ${name} founded. A empty toml configuration file has been created.`);
-    }
-
-    // Check and Load a Custom Backtest for this strategy
-    let customBacktestFileName = `${dirname}/backtest.json`;
-    if (fs.existsSync(customBacktestFileName)) {
-        let customBacktest: any = JSON.parse(fs.readFileSync(customBacktestFileName).toString('utf8'));
-
-        // Set configuraiton based on customBacktest if available
-        // For while only watch and backtest are accepted here.
-        if (customBacktest.watch) {
-            backtest.watch = customBacktest.watch;
-        }
-        if (customBacktest.backtest) {
-            backtest.backtest = customBacktest.backtest;
-        }
-    }
-
-    // Check and Load a Paper Trader for this strategy
-    let paperTraderFileName = `${dirname}/paper-trader.toml`;
-    if (fs.existsSync(paperTraderFileName)) {
-        backtest.paperTrader = toml.parse(fs.readFileSync(paperTraderFileName).toString('utf8'));
     }
 
     // Initialize a Webview Panel to show the result and futurely the debug while processing.
