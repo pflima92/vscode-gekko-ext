@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [0.1.0]
 
 * Use the `backtest.json` under a strategy package to retrieve the a configuration of the backtest.
-* Removed `paper-trader.yaml` dependency for each strategy in order to read from `backtest.json`.
+* Removed `paper-trader.toml` dependency for each strategy in order to read from `backtest.json`.
 
 ## [0.0.3]
 
