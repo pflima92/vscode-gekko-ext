@@ -4,6 +4,8 @@ Jspare Cloud Gekko Strategy Builder for Vscode
 
 > Extension made exclusively for [Jspare Cloud Gekko](https://github.com/jspare-projects/gekko), isn't compatible with `askmike/gekko`.
 
+![demo1](./images/demo1.gif)
+
 ## Running the Extension
 
 - Run `npm install` in terminal to install dependencies
