@@ -8,7 +8,7 @@
 		"name": "Paulo Lima",
 		"url": "https://github.com/pflima92"
 	},
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"repository": "https://github.com/jspare-projects/vscode-gekko-ext",
 	"engines": {
 		"vscode": "^1.31.0",
@@ -30,7 +30,8 @@
 	"icon": "images/logo.png",
 	"activationEvents": [
 		"onCommand:extension.gekkoServerInfo",
-		"onCommand:extension.backtestStrategy"
+		"onCommand:extension.backtestStrategy",
+		"onCommand:extension.createWorkspace"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -109,6 +110,10 @@
 			}
 		],
 		"commands": [
+			{
+				"command": "extension.createWorkspace",
+				"title": "Gekko: Create Workspace"
+			},
 			{
 				"command": "extension.gekkoServerInfo",
 				"title": "Gekko: Server Version Info"
