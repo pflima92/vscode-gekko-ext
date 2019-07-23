@@ -1,9 +1,10 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
+import { WORKSPACE_CONFIG_NAME } from '../utils/pluginUtils';
 
 const defaultWorkspaceConfig = {
-    "workspaceConfig": "./vscode-gekko-ext.json",
+    "workspaceConfig": WORKSPACE_CONFIG_NAME,
     "dirs": {
         "strategies": [
             "./strategies/"

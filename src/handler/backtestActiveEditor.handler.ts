@@ -8,6 +8,7 @@ import * as toml from 'toml';
 import checkVersion from './checkVersion';
 import { BacktestSandbox } from '../client/gekko.client';
 import backtestReport from '../reports/backtest.report';
+import { GetWorkspaceConfig } from '../utils/pluginUtils';
 
 export default async () => {
 
@@ -46,8 +47,9 @@ export default async () => {
         strategyBacktest = JSON.parse(fs.readFileSync(customBacktestFileName).toString('utf8'));
     }
 
+    let workspaceBacktest = GetWorkspaceConfig().backtest || {};
     let backtest: any = {};
-    _.merge(backtest, baseBacktest, strategyBacktest);
+    _.merge(backtest, baseBacktest, workspaceBacktest, strategyBacktest);
 
     // Set Params
     let settings = {};
