@@ -5,6 +5,7 @@ import { WORKSPACE_CONFIG_NAME } from '../utils/pluginUtils';
 
 const defaultWorkspaceConfig = {
     "workspaceConfig": WORKSPACE_CONFIG_NAME,
+    "username" : require("os").userInfo().username,
     "dirs": {
         "strategies": [
             "./strategies/"
