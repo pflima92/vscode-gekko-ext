@@ -8,16 +8,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 *Version 0.X.0 (Backlog)*
 
-* Add better support to parameterize a backtest on configuration tab.
 * Connect into Sandbox Websocket to retrieve logs. (Server future feature)
 * Add Code Snippets.
 * Export results locally and save it in a history folder.
-* Create a CSV with all performance reports and add a new line for each new backtest executed using this plugin.
 * Code completion based on Gekko trading advisor. Use the vscode api to help to indicate the essentials functions provided by the gekko since its not exposed by one library.
 * Support backtest config profile.
-* Show a specific backtest result report.
 
-## [0.3.0] - Work in Progress
+## [0.3.0]
 
 * Add Gekko Explorer that allows list, delete and detail backtests already in Gekko.
 * Add command to Open a specific Backtest ID.
