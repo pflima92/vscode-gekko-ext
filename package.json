@@ -8,7 +8,7 @@
 		"name": "Paulo Lima",
 		"url": "https://github.com/pflima92"
 	},
-	"version": "0.4.0",
+	"version": "0.4.0-dev",
 	"repository": "https://github.com/jspare-projects/vscode-gekko-ext",
 	"engines": {
 		"vscode": "^1.36.0",

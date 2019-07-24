@@ -85,7 +85,7 @@ export class BacktestItem extends vscode.TreeItem {
 
 	get description(): string {
 		return `${this.item.exchange} - ${this.item.pair} - ${this.item.tradingAdvisor.method} | ${this.item.performanceReport &&
-			formatNumber(profitPercent(this.item.performanceReport)) + ' in ' + this.item.performanceReport.timespan} - candle of ${this.item.tradingAdvisor.method}m`;
+			formatNumber(profitPercent(this.item.performanceReport)) + ' in ' + this.item.performanceReport.timespan} - candle of ${this.item.tradingAdvisor.candleSize}m`;
 	}
 	contextValue = 'backtestItem';
 }
