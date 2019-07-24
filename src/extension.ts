@@ -6,20 +6,22 @@ import gekkoServerInfoHandler from './handler/gekkoServerInfo.handler';
 import backtestActiveEditor from './handler/backtestActiveEditor.handler';
 import createWorkspaceHandler from './handler/createWorkspace.handler';
 import { BacktestResultProvider, BacktestItem } from './provider/backtestResult';
-import openBacktestReportHandler from './handler/openBacktestReportHandler.handler';
+import openBacktestReportHandler from './handler/openBacktestReport.handler';
 import deleteBacktestHandler from './handler/deleteBacktest.handler';
+import openBacktestReportCommand from './handler/openBacktestReport.command';
 
 export function activate(context: vscode.ExtensionContext) {
 
 	const backtestResultProvider = new BacktestResultProvider();
 	vscode.window.registerTreeDataProvider('backtestResults', backtestResultProvider);
 	vscode.commands.registerCommand('backtestResults.refreshEntry', () => backtestResultProvider.refresh());
-	vscode.commands.registerCommand('backtestResults.viewEntry', openBacktestReportHandler);
+	vscode.commands.registerCommand('backtestResults.viewEntry', (entry) => openBacktestReportHandler(entry.item.id));
 	vscode.commands.registerCommand('backtestResults.deleteEntry', (entry) => deleteBacktestHandler(entry).then(() => backtestResultProvider.refresh()));
 
 	context.subscriptions.push(vscode.commands.registerCommand('extension.gekkoServerInfo', gekkoServerInfoHandler));
 	context.subscriptions.push(vscode.commands.registerCommand('extension.backtestStrategy', backtestActiveEditor));
 	context.subscriptions.push(vscode.commands.registerCommand('extension.createWorkspace', createWorkspaceHandler));
+	context.subscriptions.push(vscode.commands.registerCommand('extension.openBacktestById', openBacktestReportCommand));
 }
 
 // this method is called when your extension is deactivated

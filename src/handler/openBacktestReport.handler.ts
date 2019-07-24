@@ -3,9 +3,7 @@ import { BacktestItem } from '../provider/backtestResult';
 import backtestReport from '../reports/backtest.report';
 import { BacktestResultById } from '../client/gekko.client';
 
-export default (element: BacktestItem) => {
-
-    let id = element.item.id;
+export default (id: string) => {
 
     // Initialize a Webview Panel to show the result and futurely the debug while processing.
     const panel = vscode.window.createWebviewPanel(

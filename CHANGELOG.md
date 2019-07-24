@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [0.3.0] - Work in Progress
 
 * Add Gekko Explorer that allows list, delete and detail backtests already in Gekko.
+* Add command to Open a specific Backtest ID.
 
 ## [0.2.0]
 
