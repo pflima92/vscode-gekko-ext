@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.4.0]
 
-TODO
+* Add command to Open Gekko UI in Browser
 
 ## [0.3.0]
 

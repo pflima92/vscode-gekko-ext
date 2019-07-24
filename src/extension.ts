@@ -9,6 +9,7 @@ import { BacktestResultProvider, BacktestItem } from './provider/backtestResult'
 import openBacktestReportHandler from './handler/openBacktestReport.handler';
 import deleteBacktestHandler from './handler/deleteBacktest.handler';
 import openBacktestReportCommand from './handler/openBacktestReport.command';
+import openGekkoUiHandler from './handler/openGekkoUi.handler';
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -22,6 +23,8 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(vscode.commands.registerCommand('extension.backtestStrategy', backtestActiveEditor));
 	context.subscriptions.push(vscode.commands.registerCommand('extension.createWorkspace', createWorkspaceHandler));
 	context.subscriptions.push(vscode.commands.registerCommand('extension.openBacktestById', openBacktestReportCommand));
+	context.subscriptions.push(vscode.commands.registerCommand('extension.openGekkoUi', openGekkoUiHandler));
+	
 }
 
 // this method is called when your extension is deactivated
