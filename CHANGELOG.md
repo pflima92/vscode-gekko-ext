@@ -8,11 +8,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 *Version 0.X.0 (Backlog)*
 
-* Connect into Sandbox Websocket to retrieve logs. (Server future feature)
-* Add Code Snippets.
-* Export results locally and save it in a history folder.
 * Code completion based on Gekko trading advisor. Use the vscode api to help to indicate the essentials functions provided by the gekko since its not exposed by one library.
+* Connect into Sandbox Websocket to retrieve logs. (Server future feature)
+* Export results locally and save it in a history folder.
 * Support backtest config profile.
+* Add custom view for list all strategies and exchanges supported.
+* Add custom view for manage user credentials.
+
+## [0.4.0]
+
+TODO
 
 ## [0.3.0]
 
