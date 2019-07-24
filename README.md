@@ -55,6 +55,3 @@ Structure expected:
 - example-strategy/example-strategy.toml (Strategy Configuration Parameters) - OPTIONAL
 - example-strategy/paper-trader.js (Paper Trader in TOML format) - OPTIONAL
 - example-strategy/backtest.json (Backtest in JSON format) - OPTIONAL
-
-Command Pallete: `Platform Gekko: Stage Active Editor Strategy` or `Platform Gekko: Unstage Active Editor Strategy`
-Command Pallete: `Platform Gekko: Backtest Active Editor Strategy`

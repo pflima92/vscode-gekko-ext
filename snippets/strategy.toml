@@ -1,0 +1,6 @@
+threshold_a = 1
+threshold_b = 2
+
+[stoploss]
+enabled = false
+threshold_stopLoss = 0.15

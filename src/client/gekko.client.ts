@@ -29,7 +29,49 @@ const BacktestSandbox = (data: any) => {
     });
 };
 
+const BacktestList = (filter: any)  => {
+    const gekkoAddress = vscode.workspace.getConfiguration().get('gekko.address');
+    return new Promise<any>(function (resolve, reject) {
+        unirest.get(`${gekkoAddress}/api/backtests`)
+            .headers({ 'Accept': 'application/json', 'Content-Type': 'application/json' })
+            .send()
+            .end(res => {
+                if (res.error) reject(res.error);
+                else resolve(res.body);
+            });
+    });
+};
+
+const BacktestResultById = (id: string)  => {
+    const gekkoAddress = vscode.workspace.getConfiguration().get('gekko.address');
+    return new Promise<any>(function (resolve, reject) {
+        unirest.get(`${gekkoAddress}/api/backtests/${id}`)
+            .headers({ 'Accept': 'application/json', 'Content-Type': 'application/json' })
+            .send()
+            .end(res => {
+                if (res.error) reject(res.error);
+                else resolve(res.body);
+            });
+    });
+};
+
+const DeleteBacktestResultById = (id: string)  => {
+    const gekkoAddress = vscode.workspace.getConfiguration().get('gekko.address');
+    return new Promise<any>(function (resolve, reject) {
+        unirest.delete(`${gekkoAddress}/api/backtests/${id}`)
+            .headers({ 'Accept': 'application/json', 'Content-Type': 'application/json' })
+            .send()
+            .end(res => {
+                if (res.error) reject(res.error);
+                else resolve(res.body);
+            });
+    });
+};
+
 export {
     GetInfo,
-    BacktestSandbox
+    BacktestSandbox,
+    BacktestList,
+    BacktestResultById,
+    DeleteBacktestResultById
 }

@@ -1,60 +1,27 @@
-import * as _ from 'lodash'
-import * as humanizeDuration from 'humanize-duration'
-import * as moment from 'moment'
+import * as humanizeDuration from 'humanize-duration';
+import * as moment from 'moment';
+import { formatNumber, getMostLeastProfitable, getSum, percentWins, profitPercent } from '../utils/mathUtils';
 
-const num = (i, maximumSignificantDigits = 3) => new Intl.NumberFormat('en-IE', { maximumSignificantDigits: maximumSignificantDigits }).format(i);
-const color = (i, varargs: any = '', fun = x => i >= 0) => `<span style="color: ${fun(i) ? 'green' : 'red'}" >${num(i)}${varargs}</span>`;
+const color = (i, varargs: any = '', fun = x => i >= 0) => `<span style="color: ${fun(i) ? 'green' : 'red'}" >${formatNumber(i)}${varargs}</span>`;
 const arrow = (i) => i >= 0 ? '(+)' : '(-)';
-
-const percentWins = (data) => {
-   let win = 0;
-      if(data.roundtrips && data.roundtrips.length){
-        _.each(data.roundtrips, function(item){
-          if(item.profit > 0) win++;
-        });
-        return (100 * win / data.roundtrips.length);
-      }
-      return 0
-};
-const getMostLeastProfitable = (data, least) => {
-   if(data.roundtrips && data.roundtrips.length){
-      let pVal = 0;
-      if(least) {
-        pVal = _.get(_.minBy(data.roundtrips, 'profit'), 'profit');
-        if (pVal > 0) return 0;
-      } else {
-        pVal = _.get(_.maxBy(data.roundtrips, 'profit'),'profit');
-        if(pVal < 0) return 0;
-      }
-      return pVal;
-    }
-    return 0
-};
-
-const profitPercent = (data) => ((data.balance * 100) / data.startBalance) - 100;
-
-const getSum = (data, losses: Boolean = false) => {
-   if(data.roundtrips && data.roundtrips.length) {
-      return losses === true ? _.sumBy(data.roundtrips, o => o.profit < 0 ? o.pnl : 0) : _.sumBy(data.roundtrips, o => o.profit > 0 ? o.pnl : 0);
-    }
-    return 0;
-};
 
 export default (res: any) => {
 
-   if(!res.performanceReport){
+   if (!res.performanceReport) {
       return '<p><strong>Given backtest does not registered any performance report. Please validate your watch parameters or check your strategy logs.</strong></p>';
    }
 
-    let report = `
+   let report = `
     <h1>Backtest Result</h1>
 <p>This Backtest result was executed through Gekko: <em>${res.serverAddress}</em></p>
 <p><strong>Backtest Overview</strong></p>
+<p><strong>Unique Id:</strong> ${res.id}</p>
+<p><strong>Parent Id:</strong> ${res.parentId}</p>
 <table width="397">
    <tbody>
       <tr>
          <td><strong>Strategy Name:</strong></td>
-         <td>${res.name}</td>
+         <td>${res.tradingAdvisor.method}</td>
          <td></td>
          <td><strong>Exchange:</strong></td>
          <td>${res.market.exchange}</td>
@@ -92,21 +59,21 @@ export default (res: any) => {
          <td style="width: 119px;">${res.performanceReport.endTime}</td>
          <td style="width: 119px;"></td>
          <td style="width: 119px;"><strong>Sharpe ratio:</strong></td>
-         <td style="width: 120px;">${num(res.performanceReport.sharpe)}</td>
+         <td style="width: 120px;">${formatNumber(res.performanceReport.sharpe)}</td>
       </tr>
       <tr>
          <td style="width: 119px;"><strong>Timespan:</strong></td>
          <td style="width: 119px;">${res.performanceReport.timespan}</td>
          <td style="width: 119px;"></td>
          <td style="width: 119px;"><strong>Start Balance:</strong></td>
-         <td style="width: 120px;">${num(res.performanceReport.startBalance, 4)}</td>
+         <td style="width: 120px;">${formatNumber(res.performanceReport.startBalance, 4)}</td>
       </tr>
       <tr>
          <td style="width: 119px;"><strong>Start price:</strong></td>
          <td style="width: 119px;">${res.performanceReport.startPrice}</td>
          <td style="width: 119px;"></td>
          <td style="width: 119px;"><strong>End Balance:</strong></td>
-         <td style="width: 120px;">${num(res.performanceReport.balance, 4)}</td>
+         <td style="width: 120px;">${formatNumber(res.performanceReport.balance, 4)}</td>
       </tr>
       <tr>
          <td style="width: 119px;"><strong>End price:</strong></td>
@@ -129,7 +96,7 @@ export default (res: any) => {
       <tbody>
          <tr>
             <td style="width: 70px;">Percent Wins:</td>
-            <td style="width: 71px;"><strong>${num(percentWins(res))}</strong></td>
+            <td style="width: 71px;"><strong>${formatNumber(percentWins(res))}</strong></td>
             <td style="width: 71px;"></td>
             <td style="width: 71px;">Best Win:</td>
             <td style="width: 71px;">${color(getMostLeastProfitable(res, false))}</td>
@@ -139,7 +106,7 @@ export default (res: any) => {
          </tr>
          <tr>
             <td style="width: 70px;">Profit/Loss:</td>
-            <td style="width: 71px;"><strong>${num(getSum(res) + getSum(res, true))}</strong></td>
+            <td style="width: 71px;"><strong>${formatNumber(getSum(res) + getSum(res, true))}</strong></td>
             <td style="width: 71px;"></td>
             <td style="width: 71px;">Sum Profits:</td>
             <td style="width: 71px;">${color(getSum(res))}</td>
@@ -149,7 +116,7 @@ export default (res: any) => {
          </tr>
       </tbody>
    </table>
-   
+   <br>
    <div>
       <div>
          <table>
@@ -164,33 +131,29 @@ export default (res: any) => {
                   <th>%</th>
                </tr>
             </thead>
-            <tbody>
-               `
-        +
+            <tbody>`
+      +
 
-        res.roundtrips.map((r: any) => `
+      res.roundtrips.map((r: any) => `
                 <tr>
-                  <td>${ moment.unix(r.entryAt).format("MM/DD/YYYY hh:mm") }</td>
-                  <td>${ moment.unix(r.exitAt).format("MM/DD/YYYY hh:mm") }</td>
+                  <td>${ moment.unix(r.entryAt).format("MM/DD/YYYY hh:mm")}</td>
+                  <td>${ moment.unix(r.exitAt).format("MM/DD/YYYY hh:mm")}</td>
                   <td>${humanizeDuration(r.duration)}</td>
-                  <td>${num(r.entryBalance)}</td>
-                  <td>${num(r.exitBalance)}</td>
-                  <td><strong>${num(r.pnl)} </strong></td>
+                  <td>${formatNumber(r.entryBalance)}</td>
+                  <td>${formatNumber(r.exitBalance)}</td>
+                  <td><strong>${formatNumber(r.pnl)} </strong></td>
                   <td>
                      <p><strong>${color(r.profit, `% <em>${arrow(r.profit)}</em>`)}</strong></p>
                   </td>
                </tr>
-                `).join()
-        +
+                `).join('')
+      +
 
-        `
+      `
             </tbody>
          </table>
       </div>
-      <div></div>
-   </div>
-</div>
-    `;
+   <div>`;
 
-    return report;
+   return report;
 };

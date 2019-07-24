@@ -15,10 +15,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * Create a CSV with all performance reports and add a new line for each new backtest executed using this plugin.
 * Code completion based on Gekko trading advisor. Use the vscode api to help to indicate the essentials functions provided by the gekko since its not exposed by one library.
 * Support backtest config profile.
+* Show a specific backtest result report.
 
 ## [0.3.0] - Work in Progress
 
-TODO
+* Add Gekko Explorer that allows list, delete and detail backtests already in Gekko.
 
 ## [0.2.0]
 

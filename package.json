@@ -11,7 +11,7 @@
 	"version": "0.3.0",
 	"repository": "https://github.com/jspare-projects/vscode-gekko-ext",
 	"engines": {
-		"vscode": "^1.31.0",
+		"vscode": "^1.36.0",
 		"platform-gekko": "^1.0.0"
 	},
 	"categories": [
@@ -29,12 +29,82 @@
 	"homepage": "https://github.com/jspare-projects/vscode-gekko-ext",
 	"icon": "images/logo.png",
 	"activationEvents": [
+		"onView:backtestResults",
 		"onCommand:extension.gekkoServerInfo",
 		"onCommand:extension.backtestStrategy",
 		"onCommand:extension.createWorkspace"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "gekko-explorer",
+					"title": "Gekko Explorer",
+					"icon": "media/dep.svg"
+				}
+			]
+		},
+		"views": {
+			"gekko-explorer": [
+				{
+					"id": "backtestResults",
+					"name": "Backtest Results"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "extension.createWorkspace",
+				"title": "Gekko: Create Workspace"
+			},
+			{
+				"command": "extension.gekkoServerInfo",
+				"title": "Gekko: Server Version Info"
+			},
+			{
+				"command": "extension.backtestStrategy",
+				"title": "Gekko: Backtest Active Editor Strategy"
+			},
+			{
+				"command": "backtestResults.refreshEntry",
+				"title": "Refresh",
+				"icon": {
+					"light": "resources/light/refresh.svg",
+					"dark": "resources/dark/refresh.svg"
+				}
+			},
+			{
+				"command": "backtestResults.viewEntry",
+				"title": "Open detailed report"
+			},
+			{
+				"command": "backtestResults.deleteEntry",
+				"title": "Delete"
+			}
+		],
+		"menus": {
+			"view/title": [
+				{
+					"command": "backtestResults.refreshEntry",
+					"when": "view == backtestResults",
+					"group": "navigation"
+				}
+			],
+			"view/item/context": [
+				{
+					"command": "backtestResults.viewEntry",
+					"when": "view == backtestResults && viewItem == backtestItem",
+					"group": "backtestResults@1"
+				},
+				{
+					"command": "backtestResults.deleteEntry",
+					"when": "view == backtestResults && viewItem == backtestItem",
+					"group": "backtestResults@2"
+
+				}
+			]
+		},
 		"configuration": [
 			{
 				"title": "Jspare Cloud Gekko",
@@ -109,20 +179,6 @@
 				}
 			}
 		],
-		"commands": [
-			{
-				"command": "extension.createWorkspace",
-				"title": "Gekko: Create Workspace"
-			},
-			{
-				"command": "extension.gekkoServerInfo",
-				"title": "Gekko: Server Version Info"
-			},
-			{
-				"command": "extension.backtestStrategy",
-				"title": "Gekko: Backtest Active Editor Strategy"
-			}
-		],
 		"snippets": [
 			{
 				"language": "javascript",
@@ -151,7 +207,7 @@
 		"standard-version": "^4.4.0",
 		"tslint": "^5.11.0",
 		"typescript": "^2.9.2",
-		"vscode": "^1.1.34"
+		"vscode": "^1.1.35"
 	},
 	"standard-version": {
 		"message": "chore(release): %s [ci skip]"
