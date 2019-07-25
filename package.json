@@ -32,6 +32,7 @@
 		"onView:backtestResults",
 		"onCommand:extension.gekkoServerInfo",
 		"onCommand:extension.openGekkoUi",
+		"onCommand:extension.openGordon",
 		"onCommand:extension.backtestStrategy",
 		"onCommand:extension.createWorkspace",
 		"onCommand:extension.openBacktestById"
@@ -67,6 +68,10 @@
 			{
 				"command": "extension.openGekkoUi",
 				"title": "Gekko: Open Gekko UI in Browser"
+			},
+			{
+				"command": "extension.openGordon",
+				"title": "Gekko: Open Gordon UI (embedded)"
 			},
 			{
 				"command": "extension.backtestStrategy",

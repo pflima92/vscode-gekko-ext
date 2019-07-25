@@ -10,6 +10,7 @@ import openBacktestReportHandler from './handler/openBacktestReport.handler';
 import deleteBacktestHandler from './handler/deleteBacktest.handler';
 import openBacktestReportCommand from './handler/openBacktestReport.command';
 import openGekkoUiHandler from './handler/openGekkoUi.handler';
+import openGordonHandler from './handler/openGordon.handler';
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -24,7 +25,7 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(vscode.commands.registerCommand('extension.createWorkspace', createWorkspaceHandler));
 	context.subscriptions.push(vscode.commands.registerCommand('extension.openBacktestById', openBacktestReportCommand));
 	context.subscriptions.push(vscode.commands.registerCommand('extension.openGekkoUi', openGekkoUiHandler));
-	
+	context.subscriptions.push(vscode.commands.registerCommand('extension.openGordon', () => openGordonHandler(context)));
 }
 
 // this method is called when your extension is deactivated
